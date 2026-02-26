@@ -55,7 +55,7 @@ export function AboutView() {
             )}
           </p>
           <a
-            href="https://github.com/nicepkg/nice-web-office"
+            href="https://github.com/baotlake/office-website"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center text-sm font-semibold text-primary hover:underline"

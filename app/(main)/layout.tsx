@@ -62,22 +62,7 @@ export default function MainLayout({
         <div className="absolute top-[20%] right-[10%] w-[30%] h-[30%] bg-primary/3 rounded-full blur-[100px]"></div>
       </div>
 
-      <Header>
-        <a
-          href="https://www.producthunt.com/products/serverless-web-office-by-ziziyi?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-serverless-web-office-by-ziziyi"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hidden md:flex items-center hover:opacity-90 transition-opacity ms-auto me-4"
-        >
-          <img
-            alt="Serverless Web Office by ZIZIYI - Serverless Web Office: Private, In-Browser editing via WASM. | Product Hunt"
-            src={`https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1067951&theme=${
-              isDarkTheme(theme) ? "dark" : "light"
-            }&t=1769359248898`}
-            className="h-[42px] w-auto"
-          />
-        </a>
-      </Header>
+      <Header></Header>
       <div className="flex flex-1 overflow-hidden flex-col md:flex-row relative z-10">
         <div className="hidden md:flex">
           <Sidebar pathname={pathname} getNewUrl={getNewUrl} />

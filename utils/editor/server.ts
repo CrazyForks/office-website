@@ -397,7 +397,9 @@ export class EditorServer {
           output = input;
         }
         if (!output) {
-          throw Error("convert failed");
+          console.error("Conversion failed");
+          // TODO: error message
+          return { status: "error" };
         }
         const blob = new Blob([new Uint8Array(output)]);
         const url = URL.createObjectURL(blob);
@@ -407,17 +409,11 @@ export class EditorServer {
         a.click();
         URL.revokeObjectURL(url);
 
-        setTimeout(() => {
-          send({
-            type: "documentOpen",
-            data: {
-              type: "save",
-              status: "ok",
-              data: "data:,",
-              filetype: "pptx",
-            },
-          });
-        }, 100);
+        return { status: "ok" };
+      };
+
+      let result = {
+        status: "ok",
       };
 
       switch (cmd.savetype) {
@@ -430,19 +426,32 @@ export class EditorServer {
           break;
         case AscSaveTypes.Complete:
           this.downloadParts.push(new Uint8Array(buffer));
-          await download();
+          result = await download();
           this.downloadParts = [];
           break;
         case AscSaveTypes.CompleteAll:
           this.downloadId = "_" + Math.round(Math.random() * 1000);
           this.downloadParts = [new Uint8Array(buffer)];
-          await download();
+          result = await download();
           this.downloadParts = [];
           break;
       }
 
+      setTimeout(() => {
+        send({
+          type: "documentOpen",
+          data: {
+            type: "save",
+            // status: "ok",
+            status: result.status,
+            data: "data:,",
+            filetype: "pptx",
+          },
+        });
+      }, 100);
+
       return Response.json({
-        status: "ok",
+        status: result.status,
         type: "save",
         data: this.downloadId,
       });
