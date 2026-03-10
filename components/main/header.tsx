@@ -45,17 +45,13 @@ export function Header({ children }: PropsWithChildren<{}>) {
     <header className="h-16 flex items-center justify-between px-6 z-20 w-full shrink-0">
       <div className="flex items-center gap-3">
         <div className="flex items-center justify-center">
-          <img src="/logo.svg" className="w-9 h-9" alt="logo" />
+          <img src="/logo.svg" className="w-10 h-10" alt="logo" />
         </div>
-        <h1 className="text-lg font-bold tracking-tight text-foreground leading-5 pt-1">
-          {t("Office")}
-          <a
-            href="https://ziziyi.com/products/office"
-            target="_blank"
-            className="block text-xs font-normal scale-[0.85] origin-top-left tracking-widest"
-          >
-            by ZIZIYI
-          </a>
+        <h1 className="text-lg font-bold tracking-normal text-foreground leading-5 pt-1 text-justify [text-align-last:justify]">
+          {"ZIZIYI Office"}
+          <span className="block text-xs font-normal opacity-85 scale-[1] origin-top-left">
+            Docs Sheets Slides
+          </span>
         </h1>
       </div>
 
